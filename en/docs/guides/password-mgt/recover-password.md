@@ -1,6 +1,7 @@
-# Recover Password via Email
+# Password Recovery Via Email
 
 WSO2 Identity Server enables resetting user passwords by emailing a password reset link to the user’s registered email Id.
+<<<<<<< HEAD
     
 ## Set up notifications
 
@@ -22,16 +23,55 @@ Follow the steps below to configure WSO2 Identity Server to enable password rese
 	priority= "97"
 	enable = true
 	```
+=======
 
-	!!! info 
-        This is already configured this way by default. You can skip this step if you have not changed this configuration previously.
+## Prerequisites
 
+-   If you have migrated from a previous IS version, ensure that the `IdentityMgtEventListener` with the ` orderId=50 ` is set to **false** and that the Identity Listeners with ` orderId=95 ` and `orderId=97 ` are set to **true** in the `<IS_HOME>/repository/conf/deployment.toml ` file.
+    
+    !!! Note 
+        If there are no such entries for `event.default_listener.xxx` in `deployment.toml`, you can skip this configuration. 
+        
+    ``` toml
+    [event.default_listener.identity_mgt]
+    priority= "50"
+    enable = false
+    [event.default_listener.governance_identity_mgt]
+    priority= "95"
+    enable = true
+    [event.default_listener.governance_identity_store]
+    priority= "97"
+    enable = true
+    ```
+
+-   [Enable the email sending configurations]({{base_path}}/deploy/configure-email-sending) of the WSO2 Identity Server.
+
+    !!! tip
+        The **AccountConfirmation** template is used to send email notifications.
+
+        You can edit and customize the email template. For more information on how to do this, see [Customizing Automated Emails]({{base_path}}/guides/tenants/customize-automated-mails/).
+
+    
+## Enable password recovery via email
+
+### Enable password recovery via email for a specific tenant
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
+
+Follow the steps below to configure WSO2 Identity Server to enable password reset via email notifications.  
+
+<<<<<<< HEAD
 ## Enable password recovery
 
 Follow the steps given below to enable password recovery using email.
+=======
+1.	Sign in to the WSO2 Identity Server Management Console (`https://<HOST>:<PORT>/carbon`) as an administrator. 	 
+
+2.	On the **Main** menu of the Management Console, click **Identity > Identity Providers > Resident**.
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
 1.	Sign in to the WSO2 Identity Server Management Console as an administrator.
 
+<<<<<<< HEAD
 2.	Go to **Main** > **Identity Providers** > **Resident** and expand **Account Management**. 
 
 3.  Expand **Account Recovery** and elect **Notification based password recovery**.
@@ -42,6 +82,51 @@ Follow the steps given below to enable password recovery using email.
 
        
 ## Try it out
+=======
+3.	Under the **Account Management** section, click **Account Recovery**.
+
+    ![account-recovery-option]({{base_path}}/assets/img/fragments/account-recovery-option.png) 
+
+4.	Select **Notification based password recovery**.
+
+    ![notification-based-password-recovery-option]({{base_path}}/assets/img/guides/notification-based-password-recovery-option.png)
+
+    !!! note
+        Select **Enable reCaptcha for password recovery** to enable reCAPTCHA for password recovery via email. See [Setting Up reCAPTCHA]({{base_path}}/deploy/configure-recaptcha) for more information.
+
+5. Update the **Recovery callback URL regex** with a relavant one.
+
+    !!! note
+        The recommended **Recovery callback URL regex** to use when testing the product is `^https:\/\/localhost:9443\/.*`. However, users should modify it to meet their requirements when they deploy the product.
+
+6.	Click **Update**.
+
+### Enable password recovery via email globally
+
+1.  Navigate to the `<IS_HOME>/repository/conf/deployment.toml`file and add the following configurations.
+
+    !!! tip
+        To avoid any configuration issues, do this before starting the WSO2 Identity Server product instance.
+    
+
+    ```toml
+    [identity_mgt.password_reset_email]
+    enable_password_reset_email=true      
+    ```
+
+    !!! note
+        If you want to enable reCAPTCHA for password recovery via email, you can set `enable_recaptcha` true as a property of `[identity_mgt.password_reset_email]` in the `deployment.toml` file. See [Setting Up reCAPTCHA]({{base_path}}/deploy/configure-recaptcha) for more information.
+
+        ``` toml
+        enable_recaptcha=true
+        ```
+
+2.  You have now successfully configured reCAPTCHA for the password recovery flow.
+
+       
+## Try it out       
+### Use the My Account portal 
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
 Follow the steps given below to try out password reset using email verification.
 
@@ -65,15 +150,18 @@ Follow the steps given below to try out password reset using email verification.
     
 4.  Follow the link provided in the email to reset the password. 
 
+<<<<<<< HEAD
 You can now log in to the My Account (`https://<HOST>:<PORT>/myaccount`) application successfully as the user you created above using the new password.
 
 <!--
+=======
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
-## Recover password using the REST API
+### Use the REST API
 
 You can use the following CURL command to recover a password using REST API. 
 
-### Send recovery notification
+#### Send recovery notification
 
 This API is used to send password recovery confirmation over defined channels such as email or SMS.
 
@@ -93,7 +181,7 @@ This API is used to send password recovery confirmation over defined channels su
     "HTTP/1.1 202 Accepted"
     ```
 
-### Update password
+#### Update password
 
 This API is used to reset user password using the confirmation key received through the recovery process. Input the key and the new password.
 
@@ -113,9 +201,7 @@ This API is used to reset user password using the confirmation key received thro
     "HTTP/1.1 200 OK"        
     ```
 
----
-
-## Resend email notification
+#### Resend email notification
  
  Run the following curl command to resend email notification for password reset. 
  
@@ -135,6 +221,8 @@ This API is used to reset user password using the confirmation key received thro
     HTTP/1.1 201 Created
     ```
 -->
+
+---
 
 !!! info "Related topics"
     - [Guide: Recover password via Challenge Questions]({{base_path}}/guides/password-mgt/challenge-question)

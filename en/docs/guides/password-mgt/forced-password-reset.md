@@ -13,7 +13,7 @@ for the following situations:
 In such situations, the user has the option of contacting the admin and
 based on the validity of the request, the admin can force a password
 reset for the user account. Once it is initiated, at the point of login,
-the basic authenticator processes the login request and prompts the
+the Username & Password authenticator processes the login request and prompts the
 corresponding dialogs or error messages based on account status.
 
 ## Set up notifications
@@ -80,7 +80,7 @@ Set the **forcePasswordReset** attribute under the `urn:ietf:params:scim:schemas
 **true** in the SCIM 2.0 user create request. 
 
 ```java
-POST https://<host>:<port>/scim2/Users/<users-scim-id>
+PATCH https://<host>:<port>/scim2/Users/<users-scim-id>
 
     {"schemas": 
     ["urn:ietf:params:scim:api:messages:2.0:PatchOp","urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],

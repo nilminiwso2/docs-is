@@ -12,6 +12,7 @@ Consider a scenario where you want a user who successfully logs in after three f
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to [add a user]({{base_path}}/guides/identity-lifecycles/admin-creation-workflow/) named `Alex` with login permissions. Do not assign any roles to this user.
 - You need to configure the maximum number of failed attempts allowed.
@@ -47,7 +48,7 @@ To configure user-age-based authentication:
 
     !!! info
         - The authentication script defines a conditional step that executes the second authentication step (i.e., hardware key authenticator) only if the user logs in after a specific number of invalid login attempts (defined by the `invalidAttemptsToStepup` parameter) have been exceeded.
-        - By default, `totp` will be added as the second authentication step. You can update this with any authentication method.
+        - By default, `TOTP` will be added as the second authentication step. You can update this with any authentication method.
 
 7. Click **Update** to save your configurations.
 

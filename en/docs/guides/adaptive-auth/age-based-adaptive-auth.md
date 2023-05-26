@@ -12,6 +12,8 @@ Consider a scenario where users younger than 18 should be prevented from signing
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites) for all adaptive authenticaiton scenarios.
+
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to [update claims]({{base_path}}/guides/dialects/edit-claim-mapping) to support `BirthDate` by default.
     1. On the management console, go to **Claims > List**, select `http://wso2.org/claims`.
@@ -42,7 +44,7 @@ To configure user-age-based authentication:
 6. Click **Ok** to add the authentication script. The authentication script and authentication steps will be configured.
 
     !!! info
-        By default, `totp` will be added as the second authentication step. You can update this with any authentication method.
+        By default, `TOTP` will be added as the second authentication step. You can update this with any authentication method.
 
 
 7. Click **Update** to save your configurations.

@@ -142,11 +142,11 @@ paths:
       tags:
         - Applications
       summary: |
-        Create application from an exported XML file
+        Create application from an exported XML, YAML, or JSON file.
       operationId: importApplication
       description: >
-        This API provides the capability to store the application information,
-        provided as a file.<br>
+        This API provides the capability to create an application based on the 
+        information provided in an XML, YAML, or JSON file.<br>
           <b>Permission required:</b> <br>
               * /permission/admin/manage/identity/applicationmgt/create <br>
           <b>Scope required:</b> <br>
@@ -191,10 +191,11 @@ paths:
       tags:
         - Applications
       summary: |
-        Update application from an exported XML file
+        Update application from an exported XML, YAML, or JSON file.
       operationId: importApplicationForUpdate
       description: >
-        This API provides the capability to update an application from information that has been exported as an XML file.<br>
+        This API provides the capability to update an application based on the 
+        information provided in an XML, YAML, or JSON file.<br>
           <b>Permission required:</b> <br>
               * /permission/admin/manage/identity/applicationmgt/update <br>
           <b>Scope required:</b> <br>
@@ -446,6 +447,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /applications/{applicationId}/exportFile:
+    get:
+      tags:
+        - Applications
+      operationId: exportApplicationAsFile
+      summary: |
+        Export application in XML, YAML, or JSON file formats.
+      description: |
+        This API provides the capability to retrieve the application in XML, YAML, or JSON format.<br>
+          <b>Permission required:</b> <br>
+              * /permission/admin/manage/identity/applicationmgt/view <br>
+          <b>Scope required:</b> <br>
+              * internal_application_mgt_view
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the application.
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/exportSecretsQueryParam'
+        - $ref: '#/components/parameters/fileTypeHeaderParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              example: 'Sample application configuration in the requested format'
+            application/yaml:
+              schema:
+                type: string
+              example: 'Sample application configuration in the requested format'
+            application/xml:
+              schema:
+                type: string
+              example: 'Sample application configuration in the requested format'
+            application/octet-stream:
+              schema:
+                type: string
+              example: 'Sample application configuration in the requested format'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /applications/{applicationId}/owner:
     put:
       tags:
@@ -474,6 +539,57 @@ paths:
       responses:
         '200':
           description: Successfully Updated
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationId}/authenticators:
+    get:
+      tags:
+        - Authenticators
+      summary: |
+        Get configured authenticators
+      operationId: getConfiguredAuthenticators
+      description: |
+        This API provides the capability to retrieve the configured authenticators.
+        <b>Permission required:</b> <br>
+            * /permission/admin/manage/identity/applicationmgt/view <br>
+        <b>Scope required:</b> <br>
+            * internal_application_mgt_view
+      parameters:
+        - name: applicationId
+          in: path
+          description: ID of the application.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConfiguredAuthenticatorsModal'
         '400':
           description: Bad Request
           content:
@@ -2121,10 +2237,15 @@ components:
       name: filter
       required: false
       description: |
-        Condition to filter the retrieval of records. Supports 'sw', 'co', 'ew' and 'eq' operations. Currently supports only filtering based on the 'name' attribute.
+        Condition to filter the retrieval of records.
+        Supports 'sw', 'co', 'ew', and 'eq' operations with 'and', 'or' logical operators.
+        Note that 'and' and 'or' operators in filters follow the general precedence of logical operators.
+        For example, A and B or C and D = (A and B) or (C and D)).
+        Currently supports only filtering based on the 'name', the 'clientId', and the 'issuer' attributes.
 
         /applications?filter=name+eq+user_portal
-        /applications?filter=name+co+prod
+        <br>
+        /applications?filter=name+co+prod+or+clientId+co+123
       schema:
         type: string
     sortOrderQueryParam:
@@ -2154,8 +2275,9 @@ components:
       required: false
       description: |
         Specifies the required parameters in the response.
-        _This parameter accepts only the values 'advancedConfigurations' & 'templateId' with this version of 
-        API_
+        Only 'advancedConfigurations', 'templateId', 'clientId', and 'issuer' attributes are currently supported.
+
+        /applications?attributes=advancedConfigurations,templateId,clientId,issuer
       schema:
         type: string
     exportSecretsQueryParam:
@@ -2167,6 +2289,21 @@ components:
       schema:
         type: boolean
         default: false
+    fileTypeHeaderParam:
+      in: header
+      name: Accept
+      required: false
+      description: |
+        Content type of the file.
+      schema:
+        type: string
+        default: application/xml
+        enum:
+          - application/json
+          - application/xml
+          - application/yaml
+          - application/x-yaml
+          - text/yaml
     inboundProtocolsCustomOnly:
       in: query
       name: customOnly
@@ -2249,6 +2386,12 @@ components:
         accessUrl:
           type: string
           example: 'https://example.com/app/login'
+        clientId:
+          type: string
+          example: 'SmrrDNXRYf1lMmDlnleeHTuXx_Ea'
+        issuer:
+          type: string
+          example: 'http://idp.example.com/metadata.php'
         access:
           type: string
           enum:
@@ -2325,6 +2468,12 @@ components:
         accessUrl:
           type: string
           example: 'https://example.com/login'
+        clientId:
+          type: string
+          example: 'SmrrDNXRYf1lMmDlnleeHTuXx_Ea'
+        issuer:
+          type: string
+          example: 'http://idp.example.com/metadata.php'
         templateId:
           type: string
           example: "adwefi2429asdfdf94444rraf44"
@@ -2422,6 +2571,29 @@ components:
         jit:
           type: boolean
           example: false
+    ConfiguredAuthenticatorsModal:
+      type: object
+      properties:
+        stepId:
+          type: integer
+          example: 1
+        localAuthenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredAuthenticator'
+        federatedAuthenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredAuthenticator'
+    ConfiguredAuthenticator:
+      type: object
+      properties:
+        name:
+          type: string
+          example: sampleIdP
+        type:
+          type: string
+          example: SampleAuthenticator
     AdvancedApplicationConfiguration:
       type: object
       properties:
@@ -2451,6 +2623,10 @@ components:
           type: boolean
           description: Decides whether authorization policies needs to be engaged during authentication flows.
           example: true
+        fragment:
+          type: boolean
+          description: Decides whether application is a fragment application.
+          example: false
         additionalSpProperties:
           $ref: '#/components/schemas/AdditionalProperties'
     AdditionalProperties:
@@ -3320,6 +3496,7 @@ components:
           example: "85e3f4b8-0d22-4181-b1e3-1651f71b88bd"
       required:
         - id
+
     Error:
       type: object
       properties:

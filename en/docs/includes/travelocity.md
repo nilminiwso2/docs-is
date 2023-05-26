@@ -1,7 +1,11 @@
 
 {!./includes/deploying-sample-apps.md!}
 
+<<<<<<< HEAD
 - Download the [Travelocity application](https://github.com/wso2/samples-is/releases/download/v4.5.0/travelocity.com.war) from the latest release assets.
+=======
+- Download the [Travelocity application](https://github.com/wso2/samples-is/releases/download/v4.5.2/travelocity.com.war) from the latest release assets.
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
 ---
 

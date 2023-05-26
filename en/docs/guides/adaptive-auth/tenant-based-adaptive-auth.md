@@ -15,6 +15,7 @@ Consider a scenario with two tenant domains, `abc.com` and `123.com`. For users 
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to [add two new tenants]({{base_path}}/guides/tenants/tenant-mgt/) with the following specifications:
 
@@ -52,7 +53,7 @@ Consider a scenario with two tenant domains, `abc.com` and `123.com`. For users 
 
     !!! info
         - The authentication script prompts the second step of authentication for users that belong to the tenant domains named `abc.com` and `xyz.com`.
-        - By default, `totp` will be added as the second authentication step.
+        - By default, `TOTP` will be added as the second authentication step.
 
 8. Click **Update** to save the configurations.
 

@@ -41,9 +41,9 @@ development platforms before starting the installation.
 <th><p>Operating Systems/ Databases/ Userstores</p></th>
 <td><div class="content-wrapper">
 <ul>
-<li>WSO2 Identity Server requires an Oracle JDK 11 or JDK 8 compliant JDK. This will run on most common platforms that <strong>support Java 11 or Java 8.</strong> .</li>
-<li>All WSO2 Carbon-based products are generally compatible with most common DBMSs. The embedded H2 database is suitable for development and testing. For enterprise production environments we recommend an industry-standard RDBMS such as Oracle, PostgreSQL, MySQL, MS SQL, etc. For more information, see <a href="{{base_path}}/deploy/work-with-databases">Work with Databases</a>.</li>
-<li>WSO2 Identity Server supports using any of the following as a userstore :
+<li>WSO2 Identity Server requires an Oracle JDK 11 or JDK 17 compliant JDK. This will run on most common platforms that <strong>support Java 11 or Java 17.</strong> .</li>
+<li>All WSO2 Carbon-based products are generally compatible with most common DBMSs. The embedded H2 database is suitable for development and testing. For enterprise production environments we recommend an industry-standard RDBMS such as Oracle, PostgreSQL, MySQL, MS SQL, etc. For more information, see <a href="{{base_path}}/deploy/work-with-databases">Working with Databases</a>.</li>
+<li>WSO2 Identity Server supports using any of the following as a user store :
 <ul>
 <li>RDBMS</li>
 <li>An LDAP such as OpenLDAP</li>
@@ -55,8 +55,7 @@ development platforms before starting the installation.
 <p class="admonition-title">Note</p>
 <p>
 <ul>
-<li>WSO2 Identity Server is shipped with a default embedded Apache DS that is suitable for development purposes. WSO2 does not recommend using Apache DS in a production environment due to scalability issues that exist with Apache DS.</li>
-<li>WSO2 does not recommend using the H2 database as a userstore in production environments. However, you can use the H2 database for development purposes if necessary.</li>
+<li>WSO2 does not recommend using the H2 database as a user store in production environments. However, you can use the H2 database for development purposes if necessary.</li>
 </ul>
 </p>
 </div>
@@ -107,15 +106,9 @@ binary files for both MS Windows, and Linux-based operating systems.
 </ul></td>
 <td><div class="content-wrapper">
 <ul>
-<li><p>Oracle JDK 8</p></li>
 <li><p>Oracle JDK 11</p></li>
-<li><p>OpenJDK 8</p></li>
 <li><p>OpenJDK 11</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are using an Oracle JDK version lower than 8u161, you need to download the Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy files from <a href="https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">here</a> and add the files to the security directory of your Java installation to avoid <code>illegal key size</code> errors when you try to invoke a secured Web service.</p>
-</div>
 </div></td>
 <td><div class="line number1 index0 alt2">
 <a href="https://openjdk.java.net/install/">OpenJDK</a>
@@ -128,7 +121,7 @@ binary files for both MS Windows, and Linux-based operating systems.
 <td><p><strong>Web Browser*</strong></p></td>
 <td><div class="content-wrapper">
 <ul>
-<li>To access the product's <a href="{{base_path}}/deploy/get-started/run-the-product">Management Console</a>. The Web Browser must be JavaScript enabled to take full advantage of the Management console.</li>
+<li>To access the product's Management Console, the Web Browser must be JavaScript enabled to take full advantage of the Management console.</li>
 </ul>
 <div class="admonition note">
 <p><strong>Note:</strong> On Windows Server 2003, you must not go below the medium security level in Internet Explorer 6.x.</p>
@@ -208,25 +201,23 @@ or Mac OS X.
         following warning message when logging in to the management console
         due to a compression issue that exists in the High Sierra SDK.
     
-        ``` java
+        ``` toml
         WARN {org.owasp.csrfguard.log.JavaLogger} -  potential cross-site request forgery (CSRF) attack thwarted (user:<anonymous>, ip:xxx.xxx.xx.xx, method:POST, uri:/carbon/admin/login_action.jsp, error:required token is missing from the request)
         ```
     
         To avoid this issue,    
         1.	Open the `deployment.toml` file in the `<IS_HOME>/repository/conf/` directory.   
-		2. 	Set the `compression` element under the HTTPS connector configuration to `off`.   
-			
-			```
-			[transport.https]
-			...
-			compression="off"
-			...           
-			```
-           	
-			!!! note
-				If the above configuration is not listed in `deployment.toml`, add the above configuration manually.
-        
-		3.	Restart WSO2 Identity Server.   
+		2. 	Set the `compression` element under the HTTPS connector configuration to `off` and restart WSO2 Identity Server.
+
+        ``` toml
+        [transport.https]
+        ...
+        compression="off"
+        ...           
+        ```  
+        !!! note
+            If the above configuration is not listed in `deployment.toml`, add the above configuration manually.
+
     
 
 #### Set up JAVA_HOME
@@ -235,40 +226,39 @@ You must set your `         JAVA_HOME        ` environment variable to
 point to the directory where the Java Development Kit (JDK) is installed
 on the computer.
 
-Setting `JAVA_HOME` is a standard practice when you are using Java based programs. You may not need to do this manually depending on your Java Installer, as this variable is usually set by the Java installer itself. This guide is provided in case the `JAVA_HOME variable` has not been set or is incorrectly set on your machine.
+Setting `JAVA_HOME` is a standard practice when you are using Java-based programs. You may not need to do this manually depending on your Java installer, as this variable is usually set by the Java installer itself. This guide is provided in case the `JAVA_HOME` variable has not been set or is incorrectly set on your machine.
 
 !!! info
-    Environment variables are global system variables accessible by all the processes running under the operating system.
+    Environment variables are global system variables accessible by all the processes running in the operating system.
 
 1.  In your home directory, open the BASHRC file (.bash\_profile file 
-    on Mac) using editors such as vi, emacs, pico, or mcedit.
-2.  Assuming you have JDK 1.8.0\_141 in your system, add the following
-    two lines at the bottom of the file, replacing
-    `           /usr/java/jdk1.8.0_141          ` with the actual
+    on Mac) using a text editor such as vi, emacs, pico, or mcedit.
+2.  Assuming you have JDK 11.0.14 in your system, add the following
+    two lines at the bottom of the file (Replace `/usr/java/jdk-11.0.14` with the path of your JDK installation).
     directory where the JDK is installed.
 
     ```java tab="Linux"
-    export JAVA_HOME=/usr/java/jdk1.8.0_141
+    export JAVA_HOME=/usr/java/jdk-11.0.14
     export PATH=${JAVA_HOME}/bin:${PATH}
 	```
     
 	```java tab="OS X"
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_141/Contents/Home
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.14/Contents/Home
     ```
 
 3.  Save the file.
 
     !!! info
-        If you do not know how to work with text editors in a Linux SSH session, run the following command: `cat >> .bashrc.`. Paste the string from the clipboard and press Ctrl+D.
+        If you are not familiar with text editors in a Linux SSH session, run the `cat >> .bashrc.` command on a terminal, paste the string from the clipboard and press Ctrl+D.
 
 4.  To verify that the `           JAVA_HOME          ` variable is set
     correctly, execute the following command:
 
-    ```java	tab="Linux"
+    ```	tab="Linux"
     echo $JAVA_HOME
 	```
     
-    ```java tab="OS X"
+    ``` tab="OS X"
     which java
     ```
 
@@ -315,11 +305,11 @@ Setting `JAVA_HOME` is a standard practice when you are using Java based program
     editor, such as vi, emacs, pico, or mcedit.
 2.  Assuming you have JDK 1.8.0_141 in your system, add the following
     two lines at the bottom of the file, replacing
-    `           /usr/java/jdk1.8.0_141          ` with the actual
+    `/usr/java/jdk-11.0.14` with the actual
     directory where the JDK is installed.
 
     ``` java
-    export JAVA_HOME=/usr/java/jdk1.8.0_141
+    export JAVA_HOME=/usr/java/jdk-11.0.14
     export PATH=${JAVA_HOME}/bin:${PATH}
     ```
 
@@ -332,15 +322,11 @@ Setting `JAVA_HOME` is a standard practice when you are using Java based program
         ``` 
         Paste the string from the clipboard and press "Ctrl+D".
 
-4.  To verify that the `          JAVA_HOME         ` variable is set
-    correctly, execute the following command.
+4.  If `JAVA_HOME` variable is set
+    correctly, following command will return the JDK installation path.
     ```
     echo $JAVA_HOME
     ```
-
-    ![Echo command]({{base_path}}/assets/img/deploy/echo-command.png)
-
-5.  The system returns the JDK installation path.
 
 #### Set system properties
 
@@ -378,7 +364,7 @@ You must set your `         JAVA_HOME        ` environment variable to
 point to the directory where the Java Development Kit (JDK) is installed
 on the computer. Typically, the JDK is installed in a directory under
 `         C:/Program Files/Java        `, such as
-`         C:/Program Files/Java/jdk1.8.0_141        ` . If you have
+`C:/Program Files/Java/jdk-11.0.14` . If you have
 multiple versions installed, choose the latest one, which you can find
 by sorting by date.
 
@@ -418,7 +404,7 @@ prompt](#java-home).
     -   In the **Variable value** field, enter the installation path of
         the Java Development Kit, such as:
         `            c:/Program Files/Java           `
-        `            jdk1.8.0_141           `
+        `            jdk-11.0.14           `
 
 The `JAVA_HOME` variable is now set and will apply to any subsequent
 command prompt windows you open. If you have existing command prompt
@@ -458,7 +444,7 @@ want to restart it.
         ---
         **Example**
         ```java
-        set JAVA_HOME=c:/Program Files/java/jdk1.8.0_141
+        set JAVA_HOME=c:/Program Files/java/jdk-11.0.14
         ```
 
     The `JAVA_HOME variable is now set for the current CMD session only.
@@ -501,7 +487,7 @@ product directory location.
     to the boot sequence. The basic structure of the startup script has
     three parts (i.e., start, stop and restart) as follows:
 
-    ``` java
+    ``` bash
     #!/bin/bash
      
     case "$1″ in
@@ -531,7 +517,7 @@ product directory location.
         # Default-Stop:
         # Short-Description: starts the wso2 identity server
         ### END INIT INFO
-        export JAVA_HOME="/usr/lib/jvm/jdk1.8.0_141"
+        export JAVA_HOME="/usr/lib/jvm/jdk-11.0.14"
 
         startcmd='/opt/WSO2/wso2is-5.9.0/bin/wso2server.sh start > /dev/null &'
         restartcmd='/opt/WSO2/wso2is-5.9.0/bin/wso2server.sh restart > /dev/null &'
@@ -562,30 +548,32 @@ product directory location.
 
 2.  Add the script to `           /etc/init.d/          ` directory.
 
-    If you want to keep the scripts in a location other than
-    `            /etc/init.d/           ` folder, you can add a symbolic
-    link to the script in `            /etc/init.d/           ` and keep
-    the actual script in a separate location. Say your script name is
-    identityserver and it is in `            /opt/WSO2/           `
-    folder, then the commands for adding a link to
-    `            /etc/init.d/           ` is as follows:
+    !!! info
 
-    -   Make executable:
-        `              sudo chmod a+x /opt/WSO2/identityserver             `
+        If you want to keep the scripts in a location other than
+        `            /etc/init.d/           ` folder, you can add a symbolic
+        link to the script in `            /etc/init.d/           ` and keep
+        the actual script in a separate location. Say your script name is
+        `identityserver` and it is in `            /opt/WSO2/           `
+        folder, then the commands for adding a link to
+        `            /etc/init.d/           ` is as follows:
 
-    -   Add a link to `             /etc/init.d/            ` :
-        `             sudo ln -snf /opt/WSO2/identityserver /etc/init.d/identityserver            `
+        -   Make your script executable:
+            `              sudo chmod a+x /opt/WSO2/identityserver             `
+
+        -   Add a link to `             /etc/init.d/            ` :
+            `             sudo ln -snf /opt/WSO2/identityserver /etc/init.d/identityserver            `
 
 3.  Install the startup script to respective runlevels using the command
-    `           update-rc.d          ` . For example, give the following
+    `           update-rc.d          ` .
+    
+    For example, give the following
     command for the sample script shown in step1:
 
     ``` java
     sudo update-rc.d identityserver  defaults 
     ```
-
-      
-    The `           defaults          ` option in the above command
+     The `           defaults          ` option in the above command
     makes the service to start in runlevels 2,3,4 and 5 and to stop in
     runlevels 0,1 and 6.
 
@@ -597,10 +585,8 @@ product directory location.
         access to a different combination of processes.
 
 4.  You can now start, stop and restart the server using
-    `           service <service name>          `
-    `           {start|stop|restart}          ` command. You will be
-    prompted for the password of the user (or root) who was used to
-    start the service.
+    `service <service name> {start|stop|restart}`
+    command.
 
 ---
 
@@ -615,7 +601,7 @@ as _Yet Another Java Service Wrapper (YAJSW)_.
     distributed under the Apache2 license, these two cannot be packed
     together in a distribution. However, any end-user or customer can freely
     combine components under these two licenses as long as the combined work
-    is not distributed. The following instructions will guide you via the process 
+    is not distributed. The following instructions will guide you on the process
     of using YAJSW to install WSO2 Identity Server as a Windows Service.
 
 Follow the instructions in the sections below to set it up.
@@ -770,9 +756,9 @@ configuration for running a WSO2 product as a Windows Service.
 
 Extract the Carbon-based product that you want to run as a Windows
 service, and then set the Windows environment variable ` carbon_home `
-to the extracted product directory location. For example, if you want to
-run WSO2 IS 5.11.0 as a Windows service, you would set ` carbon_home ` to the
-extracted ` wso2is-5.11.0 ` directory.
+to the directory that you extracted the product. For example, if you want to
+run WSO2 IS 6.1.0 as a Windows service, you would set ` carbon_home ` to the
+extracted ` wso2is-6.1.0 ` directory.
 
 ![Edit System Variable window]({{base_path}}/assets/img/deploy/add-carbon-home-system-variable-window.png)
 
@@ -854,7 +840,7 @@ the WSO2CARBON service has been removed.
 
 ## Uninstall the product
 
-To remove an already installed product, follow the instructions below:
+To remove an installed product, follow the instructions below:
 
 <table>
 <thead>

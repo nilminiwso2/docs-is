@@ -17,6 +17,7 @@ Users who log in from the internal network should be allowed to simply log in wi
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to [add a user]({{base_path}}/guides/identity-lifecycles/admin-creation-workflow/) named `Alex` with login permissions. Do not assign any roles to this user.
 
@@ -38,7 +39,7 @@ Users who log in from the internal network should be allowed to simply log in wi
 
     !!! info
         - The authentication script prompts the second step of authentication for users who log in from an IP address that is not included within the network range configured in the script.
-        - By default, `totp` will be added as the second authentication step.
+        - By default, `TOTP` will be added as the second authentication step.
 
 7. Update the `corpNetwork` variable; two-factor authentication should apply when users log in from outside this range.
 

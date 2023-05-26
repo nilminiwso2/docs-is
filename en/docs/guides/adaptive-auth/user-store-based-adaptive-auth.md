@@ -19,6 +19,7 @@ Consider a scenario where you want to step up authentication for users who belon
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to set up a database. For this scenario, we will use an LDAP server.
 - You need to configure a new user store:
@@ -73,7 +74,7 @@ To configure user store-based authentication:
 
     !!! info
         - The authentication script prompts the second step of authentication for users that belong to the user stores named `EMPLOYEES` and `CONTRACTORS`.
-        - By default, `totp` will be added as the second authentication step. You can update this with any authentication method.
+        - By default, `TOTP` will be added as the second authentication step. You can update this with any authentication method.
 
 7. Click **Update** to save your configurations.
 

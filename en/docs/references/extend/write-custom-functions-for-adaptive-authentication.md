@@ -100,10 +100,17 @@ This section guides you to try out a sample adaptive authentication function.
 1. Build [the sample](https://github.com/wso2/samples-is/tree/master/adaptive-authentication/org.wso2.custom.auth.functions) using maven `mvn clean install`.
 2. Copy the `org.wso2.custom.auth.functions-1.0.0` binary file from `target` directory into  `<IS_HOME>/repository/components/dropins` directory.
 3. Restart WSO2 IS.
+<<<<<<< HEAD
 
 ### Configure the authentication script
 To configure the service provider with a custom adaptive authentication script:
 
+=======
+
+### Configure the authentication script
+To configure the service provider with a custom adaptive authentication script:
+
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 1. Register a service provider.
 2. Expand the **Local and Outbound Authentication Configuration** section and click **Advanced Configuration**.
 3. Add the following script as the adaptive authentication script:
@@ -122,9 +129,14 @@ This custom `getUsernameFromContext()` function can be used to retrieve the user
 
 
 !!! info "Related topics"
+<<<<<<< HEAD
     - [Concept: Multi-Factor Authentication]({{base_path}}/multi-factor-authentication)
+=======
+    - [Concept: Multi-Factor Authentication]({{base_path}}/references/concepts/authentication/multi-factor-authentication/)
+    - [Concept: Adaptive Authentication]({{base_path}}/references/concepts/authentication/adaptive-authentication/)
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
     - [Guide: Adaptive Authentication]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth)
-    - [Quick Start: Adaptive Authentication]({{base_path}}/quick-starts/adaptive-auth-overview)
+    
 
   
 

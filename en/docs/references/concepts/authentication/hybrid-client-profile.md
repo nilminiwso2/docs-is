@@ -39,7 +39,7 @@ token, refresh token and ID token.
 The following curl command is used to request tokens from the token endpoint:
 
 ``` java
-curl -k -v — user <CLIENT_ID>:<CLIENT_SECRET> -d "grant_type=authorization_code&code=99b34587–5483–374d-8b25–50485498e761&redirect_uri=<CALLBACK_URL>" <TOKEN_ENDPOINT>
+curl -k -v --user <CLIENT_ID>:<CLIENT_SECRET> -d "grant_type=authorization_code&code=99b34587–5483–374d-8b25–50485498e761&redirect_uri=<CALLBACK_URL>" <TOKEN_ENDPOINT>
 ```
 
 You will receive the following response from the token endpoint.
@@ -239,4 +239,4 @@ authorization endpoint and other is from token endpoint, be sure to
 perform the validations based on the OpenID Connect, mentioned [above](#validations).
 
 !!! info "Related topics"
-    - [Guide: OpenID Connect Hybrid Flow]({{base_path}}/guides/access-delegation/oidc-hybrid-flow/)
+    - [Guide: OpenID Connect Hybrid Flow]({{base_path}}/guides/login/oidc-hybrid-flow/)

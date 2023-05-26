@@ -1,4 +1,4 @@
-# Mask Sensitive Information in Logs
+# Configure Log Masking with Filebeat
 
 Log files and the product console may contain business sensitive information. To avoid such information being exposed, users can mask sensitive information through Filebeat.
 
@@ -31,8 +31,6 @@ Follow the instructions given below to configure this feature.
     output.logstash:
         ...
     ```
-    
 
 !!! note
       As the number of masking patterns increases, performance will be affected since each log line is matched with each pattern. It is recommended to only use the most necessary patterns.
-

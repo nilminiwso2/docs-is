@@ -5,9 +5,10 @@
  MFA configuration for the management console contains two configuration sections as follows:
 
 1. [Configure the service provider](#configure-the-service-provider)
-    - [Inbound authentications configurations](#inbound-authentications-configurations)
+    - [Claim configurations](#claim-configurations)
+    - [Inbound authentication configurations](#inbound-authentications-configurations)
     - [Local and outbound authentication configurations](#local-and-outbound-authentication-configurations)
-2. [Configure the server](#local-configurations-on-deploymenttoml)
+2. [Configure the server](#configure-wso2-is)
 
 ## Prerequisites
 
@@ -20,6 +21,18 @@ To configure MFA for the management console, initially:
 1. On the management console, go to **Main** > **Identity** > **Service Providers** > **List**.
 
 2. Click **Edit** on the service provider you wish to configure.
+
+### Claim configurations
+
+To configure claims for the service provider:
+
+1. Expand **Claim Configurations**.
+
+2. Select `http://wso2.org/claims/username` as the **Subject Claim URI**.
+
+    ![claim configurations]({{base_path}}/assets/img/guides/claim-config-management-console.png)
+
+3. Click **Update** to save the configurations.
 
 ### Inbound authentications configurations
 
@@ -49,7 +62,7 @@ To configure local and outbound authentication for the management console:
 
     !!! info
         - **Use subject identifier from this step** and **Use attributes from this step** will be selected by default. If you wish to set multiple steps, you can have only one step as the subject step and one as the attribute step.
-        - Note that you cannot use `jwt-basic` option as an authentication step.
+        - Note that you cannot use `JWT Basic` option as an authentication step.
 
 4. Click **Update** to save the configurations.
 

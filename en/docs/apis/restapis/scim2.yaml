@@ -3,7 +3,6 @@ info:
   title: SCIM 2.0 Endpoint Swagger Definition
   description: |
     SCIM 2.0 endpoints
-    It is written with [swagger 2](http://swagger.io/).
   contact:
     name: WSO2 Identity Server Team
     url: http://wso2.com
@@ -55,12 +54,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Valid User is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
     put:
       tags:
       - Me Endpoint
@@ -99,12 +92,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
       x-codegen-request-body-name: body
     post:
       tags:
@@ -151,12 +138,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Valid User is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
         500:
           description: Internal Server Error
           content:
@@ -182,12 +163,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
         501:
           description: Self delete is not suported
           content:
@@ -232,12 +207,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
       x-codegen-request-body-name: body
   /Groups:
     get:
@@ -300,12 +269,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: No Group found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
     post:
       tags:
       - Groups Endpoint
@@ -350,12 +313,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorGroupNotAvailable'
         409:
           description: Group already exist
           content:
@@ -397,12 +354,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid groups are not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/GroupSearchErrorResponseObject'
       x-codegen-request-body-name: body
   /Groups/{id}:
     get:
@@ -449,12 +400,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
     put:
       tags:
       - Groups Endpoint
@@ -511,12 +456,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -549,12 +488,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
     patch:
       tags:
       - Groups Endpoint
@@ -610,12 +543,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
       x-codegen-request-body-name: body
   /Users:
     get:
@@ -635,7 +562,7 @@ paths:
         \ number of users per page as the `totalResults`. This is only applicable\
         \ for the LDAP user store. The JDBC user store is working according to the\
         \ specification.\n\n[scim2]\nremove_duplicate_users_in_users_response = true\n\
-        \n<b>Permission required:</b>\n* /permission/admin/manage/identity/usermgt/view\n\
+        \n<b>Permission required:</b>\n* /permission/admin/manage/identity/usermgt/list\n\
         \n<b>Scope required:</b>\n    * internal_user_mgt_list\n    \n"
       operationId: getUser
       parameters:
@@ -691,12 +618,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid users are not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/GroupSearchErrorResponseObject'
     post:
       tags:
       - Users Endpoint
@@ -747,12 +668,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid User is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
         500:
           description: Internal Server Error
           content:
@@ -794,12 +709,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid users are not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/GroupSearchErrorResponseObject'
       x-codegen-request-body-name: body
   /Users/{id}:
     get:
@@ -808,7 +717,7 @@ paths:
       summary: Get User by ID
       description: "Return user details if a user found.\n\n<b>Permission required:</b>\n\
         * /permission/admin/manage/identity/usermgt/view\n\n<b>Scope required:</b>\n\
-        \    * internal_user_mgt_list\n    \n"
+        \    * internal_user_mgt_view\n    \n"
       operationId: getUser by id
       parameters:
       - name: id
@@ -846,12 +755,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
     put:
       tags:
       - Users Endpoint
@@ -902,12 +805,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -940,12 +837,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
     patch:
       tags:
       - Users Endpoint
@@ -997,12 +888,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid user is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUserNotAvailable'
       x-codegen-request-body-name: body
   /Roles:
     get:
@@ -1050,12 +935,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: No Role found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoRoleAvailable'
     post:
       tags:
       - Roles Endpoint
@@ -1089,12 +968,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Role is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorRoleNotAvailable'
         409:
           description: Role already exist
           content:
@@ -1136,12 +1009,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid roles are not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/RoleSearchErrorResponseObject'
       x-codegen-request-body-name: body
   /Roles/{id}:
     get:
@@ -1188,12 +1055,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid role is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoRoleAvailable'
     put:
       tags:
       - Roles Endpoint
@@ -1240,12 +1101,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid role is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoRoleAvailable'
         406:
           description: Not Acceptable
           content:
@@ -1284,12 +1139,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid role is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoRoleAvailable'
     patch:
       tags:
       - Roles Endpoint
@@ -1330,12 +1179,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid role is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoRoleAvailable'
         406:
           description: Not Acceptable
           content:
@@ -1347,10 +1190,20 @@ paths:
     post:
       tags:
       - Bulk Endpoint
-      summary: Create Users in Bulk
-      description: "This API is used to create multiple users at once.\n\n <b>Permission\
-        \ required:</b>\n * /permission/admin/manage/identity/usermgt\n \n <b>Scope\
-        \ required:</b>\n    * internal_user_mgt_create\n"
+      summary: Create/ Update/ Delete SCIM Resources (Users/ Groups/ Roles) in Bulk
+      description: |
+        This API is used to create/update/replace/delete SCIM resources in bulk. You need to specify different operations in the request payload corresponding to the type of bulk update: </br>
+          - **POST** operation: Adds new resources.
+          - **PUT** operation: Replaces an existing resource.
+          - **PATCH** opearation: Updates attribues of an existing resource.
+          - **DELETE** operation: Removes an existing resource.
+        Learn more about [defining batch operations](../scim2-batch-operations).
+        
+         <b>Permission required:</b>
+         * /permission/admin/manage/identity/usermgt
+         
+         <b>Scope required:</b>
+            * internal_user_mgt_create
       operationId: createBulkUsers
       requestBody:
         content:
@@ -1381,46 +1234,6 @@ paths:
           description: Users already exists
           content: {}
       x-codegen-request-body-name: body
-    delete:
-      tags:
-      - Bulk Endpoint
-      summary: Delete Users in Bulk
-      description: "This API is used to delete multiple users at once.\n\n <b>Permission\
-        \ required:</b>\n * /permission/admin/manage/identity/usermgt/delete\n \n\
-        \ <b>Scope required:</b>\n    * internal_user_mgt_delete\n"
-      operationId: deleteBulkUsers
-      requestBody:
-        content:
-          application/scim+json:
-            schema:
-              $ref: '#/components/schemas/BulkUserDeleteRequestObject'
-        required: false
-      responses:
-        204:
-          description: User group is deleted
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/BulkUserDeleteResponseObject'
-        401:
-          description: Unauthorized
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorUnauthorized'
-        403:
-          description: Forbidden
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorForbidden'
-        404:
-          description: Valid group is not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorNoGroupAvailable'
-      x-codegen-request-body-name: body
   /ResourceTypes:
     get:
       tags:
@@ -1442,12 +1255,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Schema not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorSchemaNotFound'
   /ServiceProviderConfig:
     get:
       tags:
@@ -1472,12 +1279,6 @@ paths:
             application/scim+json:
               schema:
                 $ref: '#/components/schemas/ErrorUnauthorized'
-        404:
-          description: Schema not found
-          content:
-            application/scim+json:
-              schema:
-                $ref: '#/components/schemas/ErrorSchemaNotFound'
 components:
   schemas:
     UserObject:
@@ -2442,75 +2243,6 @@ components:
             code:
               type: string
               example: "201"
-    BulkUserDeleteRequestObject:
-      type: object
-      properties:
-        failOnErrors:
-          type: integer
-          example: 1
-        schemas:
-          type: array
-          items:
-            type: string
-            example: urn:ietf:params:scim:api:messages:2.0:BulkRequest
-        Operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkUserDeleteOb'
-    BulkUserDeleteOb:
-      type: object
-      properties:
-        method:
-          type: string
-          example: DELETE
-        path:
-          type: string
-          example: /Users
-        bulkId:
-          type: string
-          example: ytrewq
-        data:
-          type: object
-          properties:
-            schemas:
-              type: array
-              items:
-                type: string
-                example: urn:ietf:params:scim:schemas:core:2.0:User
-            username:
-              type: string
-              example: jesse
-            password:
-              type: string
-              example: jesspass
-    BulkUserDeleteResponseObject:
-      type: object
-      properties:
-        schemas:
-          type: array
-          items:
-            type: string
-            example: urn:ietf:params:scim:api:messages:2.0:BulkResponse
-        Operations:
-          $ref: '#/components/schemas/OperationDeleteObBulk'
-    OperationDeleteObBulk:
-      type: object
-      properties:
-        bulkId:
-          type: string
-          example: qwerty
-        method:
-          type: string
-          example: DELETE
-        location:
-          type: string
-          example: https://localhost:9443/scim2/Users/81cbba1b-c259-485d-8ba4-79afb03e5bd1
-        status:
-          type: object
-          properties:
-            code:
-              type: string
-              example: "204"
     ResourceTypeResponse:
       type: object
       properties:
@@ -2651,70 +2383,6 @@ components:
         scimType:
           type: string
           example: Forbidden
-    ErrorUserNotAvailable:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: string
-          example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: 'No user with the id : 008bba85-451d-414b-87de-c03b5a1f4217 in
-            the user store.'
-    ErrorGroupNotAvailable:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: string
-          example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: 'No Group with the id : 89a2a363-c90f-47e9-afae-949d026dad16 in
-            the user store.'
-    ErrorSchemaNotFound:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: string
-          example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: Schema not found.
-    ErrorNoGroupAvailable:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: array
-          items:
-            type: string
-            example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: Group not found in the user store.
     GroupSearchErrorResponseObject:
       required:
       - itemsPerPage
@@ -2752,39 +2420,6 @@ components:
         detail:
           type: string
           example: 'Group with name: PRIMARY/manager already exists in the system.'
-    ErrorNoRoleAvailable:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: array
-          items:
-            type: string
-            example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: Role not found in the system.
-    ErrorRoleNotAvailable:
-      required:
-      - detail
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          example: "404"
-        schemas:
-          type: string
-          example: urn:ietf:params:scim:api:messages:2.0:Error
-        detail:
-          type: string
-          example: 'No Role with the id : 4645709c-ea8c-4495-8590-e1fa0efe3de0 in
-            the system.'
     ErroRoleAlreadyAvailable:
       required:
       - detail

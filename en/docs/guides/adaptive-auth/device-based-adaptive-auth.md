@@ -18,6 +18,7 @@ Consider a scenario where users who log in to an application from a new device o
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 - You need to [add a user]({{base_path}}/guides/identity-lifecycles/admin-creation-workflow/) named `Kim` with login permissions. Do not assign any roles to this user.
 
@@ -40,7 +41,7 @@ To configure device-based authentication for an application:
 6. Click **Ok** to add the authentication script. The authentication script and authentication steps will be configured.
 
     !!! info
-        By default, `totp` will be added as the second authentication step. You can update this with any authentication method.
+        By default, `TOTP` will be added as the second authentication step. You can update this with any authentication method.
 
 7. Update `deviceRememberPeriod` to specify how long the device should be considered a trusted device.
 

@@ -1,16 +1,19 @@
 # Try Device Authorization Grant
 
 The Device Authorization Grant is a grant type in the OAuth 2.0
-specification. 
+specification.
 
 !!! info
-    For more information, see [Device Authorization Grant]({{base_path}}/references/concepts/authorization/device-flow-grant). 
+    For more information, see [Device Authorization Grant]({{base_path}}/references/concepts/authorization/device-flow-grant).
     
 Follow the topics given below to try out the Device Authorization grant type.
 
-## Set up WSO2 Identity Server
+## (Optional) Configure WSO2 Identity Server
 
-Open the `deployment.toml` file (stored in the `<IS_HOME>/repository/conf` folder) and add the following configurations:
+!!! info
+    This change is optional unless you want to change the default values of the properties mentioned below.
+
+Open the `deployment.toml` file (stored in the `<IS_HOME>/repository/conf` folder), add the following configuration, and change the values of the properties below:
 
 ```toml
 [oauth.grant_type.device_code]
@@ -91,7 +94,7 @@ Follow the steps given below to enable the Device Authorization grant for your a
 
 1. Sign in to the Management Console.
 
-2. Go to **Main** > **Service Providers** and click **Add** register a new service provider.
+2. Go to **Main** > **Identity** > **Service Providers** and click **Add**.
 
     <!--
     ![register-service-provider]({{base_path}}/assets/img/using-wso2-identity-server/register-service-provider.png)

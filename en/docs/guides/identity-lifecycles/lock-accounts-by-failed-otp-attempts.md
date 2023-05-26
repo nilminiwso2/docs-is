@@ -204,5 +204,11 @@ Add the following configuration to the <code> &lt;IS_HOME&gt;/repository/conf/de
 
 
 !!! info "Related topics"
+<<<<<<< HEAD
     -   [Guide: Customize Automated Emails]({{base_path}}/guides/tenants/customize-automated-mails)
     -   [Guide: Lock and Unlock User Accounts]({{base_path}}/guides/identity-lifecycles/lock-account)
+=======
+    -   [Guides: Customize Automated Emails]({{base_path}}/guides/tenants/customize-automated-mails)
+    -   [Guides: Lock and Unlock User Accounts]({{base_path}}/guides/identity-lifecycles/lock-account)
+    <!---   [Guides: Configure SMS OTP for 2-Factor Authentication]({{base_path}}/guides/mfa/2fa-sms-otp/)-->
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8

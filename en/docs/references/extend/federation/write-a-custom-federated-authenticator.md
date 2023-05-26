@@ -183,6 +183,7 @@ To register and configure the service provider on the partner IS:
 5. Click **Add**. Note that the `client key` and `client secret` are generated.
 
 6. Click **Update** to save the configurations.
+<<<<<<< HEAD
 
 !!! info "Download and deploy the application"
     On the partner identity server:
@@ -197,11 +198,33 @@ To add a new user:
 2. Click **Add New User**.
 
 3. Enter a **Username** and **Password** for the new user.
+=======
+
+!!! info "Download and deploy the application"
+    On the partner identity server:
+    
+    - Download the [OIDC pickup-dispatch sample](https://github.com/wso2/samples-is/releases/download/v4.5.2/pickup-dispatch.war) application.
+    - [Deploy the sample pickup-dispatch]({{base_path}}/guides/login/webapp-oidc/#deploy-the-sample-web-app) application on the partner identity server.
+
+### Add a new user
+
+To add a new user:
+1. On the management console (`https://<PARTNER_IS_HOST>:<PARTNER_IS_PORT>/carbon`) of the partner identity server, go to **Users and Roles** > **Add**.
+
+2. Click **Add New User**.
+
+3. Enter a **Username** and **Password** for the new user.
+
+4. Click **Finish** to add the new user.
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
 4. Click **Finish** to add the new user.
 
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 ## Configure the Identity Server
 
 This section guides you on how to configure the identity server to use the custom federated authenticator.
@@ -234,6 +257,7 @@ To configure the custom fedrated authenticator:
 5. Click **Update** to save the configurations.
 
 ### Configure the SP with the custom federated authenticator
+<<<<<<< HEAD
 
 To configure the custom federated authenticator for the SP:
 
@@ -241,6 +265,15 @@ To configure the custom federated authenticator for the SP:
 
 2. Click **Edit** on the `pickup-dispatch` service provider.
 
+=======
+
+To configure the custom federated authenticator for the SP:
+
+1. On the management console, go to **Main** > **Identity** > **Service Providers** > **List**.
+
+2. Click **Edit** on the `pickup-dispatch` service provider.
+
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 3. Expand the **Local and Outbound Authentication Configuration** and select `Partner-Identity-Server` from the **Federated Authentication** list.
     ![Partner identity provider]({{base_path}}/assets/img/extend/partner-identity-provider.png)
 
@@ -273,4 +306,4 @@ Similarly, you can write a federated authenticator to authenticate the users usi
 
 ## Contributing your connectors
 
-{! fragments/contributing-connectors.md !}
+{!./includes/contributing-connectors.md !}

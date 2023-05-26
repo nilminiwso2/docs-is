@@ -12,6 +12,7 @@ Consider a scenario where you want a user with an administrator role that cannot
 
 ## Prerequisites
 
+- See the [general prerequisites]({{base_path}}/guides/adaptive-auth/configure-adaptive-auth/#prerequisites-for-adaptive-authentication) for all adaptive authenticaiton scenarios.
 - You need to [set up the sample]({{base_path}}/guides/adaptive-auth/adaptive-auth-overview/#set-up-the-sample) application.
 
 ## Configure concurrent-session-based authentication
@@ -46,7 +47,7 @@ To configure concurrent-session-based authentication:
 
 6. Click **Add Authentication Step**.
 
-7. Select **active-sessions-limit-handler** from the dropdown under **Local Authenticators** and click **Add Authenticator**.
+7. Select **Active Sessions Limit** from the dropdown under **Local Authenticators** and click **Add Authenticator**.
 
 8. Click **Update** to save your configurations.
 

@@ -10,7 +10,11 @@ Users can be onboarded to WSO2 Identity Server (WSO2 IS) using one of the follow
 
 - [Lite user registrtion]({{base_path}}/guides/identity-lifecycles/lite-user-registration)
 
+<<<<<<< HEAD
 - [Bulk import users]({{base_path}}/guides/identity-lifecycles/bulk-import-users)
+=======
+- [Just-in-Time User Provisioning Workflow]({{base_path}}/guides/identity-federation/jit-workflow/)
+>>>>>>> ca39785bde82cc051e844e80ddf2829975d13af8
 
 You can also enable the following configurations to secure user onboarding:
 

@@ -275,9 +275,10 @@ Log forging can be prevented by appending a UUID to the log message.
 ## JVM parameters
 
 - The recommended JDK versions are JDK 1.8 and 11. For more information, see <a href="{{base_path}}/deploy/get-started/install/#prerequisites">Prerequisites</a>. 
-
+    
     ```java
     -Xms512m -Xmx2048m 
+    ```
 
 - To run the JVM with 2 GB (-Xmx2048m), you should ideally have about 4 GB of memory on the physical machine. 
 
@@ -285,7 +286,7 @@ Log forging can be prevented by appending a UUID to the log message.
 
 ## Mutual SSL
 
-If mutual SSL is enabled, [enable intermediate certificate validation]({{base_path}}/develop/apis/authenticate-and-authorize-rest-apis/#configure-intermediate-certificate-validation) as well to make sure that only certificates signed by the issuers mentioned in the **IntermediateCertValidation** configuration are allowed to be used during mutual SSL authentication.
+If mutual SSL is enabled, [enable intermediate certificate validation]({{base_path}}/apis/overview/#configure-intermediate-certificate-validation) as well to make sure that only certificates signed by the issuers mentioned in the **IntermediateCertValidation** configuration are allowed to be used during mutual SSL authentication.
 
 If mutual SSL authentication capabilities are not required, you can disable it <!--(TODO:{{base_path}}/administer/enabling-mutual-ssl/#enabling-mutual-ssl-in-the-wso2-is)-->.
 
@@ -337,3 +338,11 @@ Follow the steps below to change the default credentials.
     - Linux/Unix : sh wso2server.sh
     - Windows : wso2server.bat
     
+## Callback URL Regular Expressions
+
+For the scenarios listed below, you can define a regular expression to validate the callback URL. The default configuration allows any callback URL. Note that if you are using these scenarios, it is highly recommended to define the regular expression that validates and only allows access to specific callback URLs.
+
+- [Password Recovery](../../../guides/password-mgt/recover-password/#enable-password-recovery-via-email)
+- [Username Recovery](../../../guides/identity-lifecycles/recover-username/#enable-username-recovery)
+- [Self User Registration](../../../guides/identity-lifecycles/self-registration-workflow/)
+- [Lite User Registration](../../../guides/identity-lifecycles/lite-user-registration)
